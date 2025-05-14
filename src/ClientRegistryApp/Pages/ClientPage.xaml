@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sf="http://schemas.syncfusion.com/maui/toolkit"
+             x:Class="ClientRegistryApp.Pages.ClientPage"
+             Title="{Binding Title}">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid Padding="20" ColumnDefinitions="*" RowDefinitions="*,60">
+                <VerticalStackLayout Grid.Row="0">
+
+                    <sf:SfTextInputLayout 
+                        Hint="Name"
+                        ErrorText="{Binding Name.Item1.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                        HasError="{Binding Name.Item1.IsValid, Converter={StaticResource InverseBoolConverter}}">
+                        <Entry
+                            Placeholder="Enter name"
+                            MaxLength="50"
+                            Text="{Binding Name.Item1.Value}" />
+                    </sf:SfTextInputLayout>
+
+                    <sf:SfTextInputLayout 
+                        Hint="Last name">
+                        <Entry
+                            Placeholder="Enter last name"
+                            MaxLength="50"
+                            Text="{Binding LastName}" />
+                    </sf:SfTextInputLayout>
+                   
+                    <sf:SfTextInputLayout 
+                        Hint="Age"
+                        ErrorText="{Binding Age.Item1.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                        HasError="{Binding Age.Item1.IsValid, Converter={StaticResource InverseBoolConverter}}">
+                        <Entry
+                            Keyboard="Numeric"
+                            Placeholder="Enter age"
+                            MaxLength="3"
+                            TextChanged="AgeEntry_TextChanged"
+                            Text="{Binding Age.Item1.Value}" />
+                    </sf:SfTextInputLayout>
+
+                    <sf:SfTextInputLayout 
+                    Hint="Address">
+                        <Editor
+                        Placeholder="Enter address"
+                        MaxLength="200"
+                        AutoSize="TextChanges"
+                        Text="{Binding Address}" />
+                    </sf:SfTextInputLayout>
+
+                </VerticalStackLayout>
+
+                <FlexLayout Grid.Row="1">
+                    <Button Text="Cancel" 
+                        Margin="0,0,8,0"
+                        Command="{Binding BackCommand}"
+                        FlexLayout.Basis="50%"
+                        BackgroundColor="LightGray"
+                        TextColor="Black"/>
+
+                    <Button Text="Save"
+                        Margin="8,0,0,0"
+                        Command="{Binding SaveCommand}"
+                        FlexLayout.Basis="50%"
+                        BackgroundColor="DodgerBlue"
+                        TextColor="White"/>
+                </FlexLayout>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
